@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-9ox$c_*2$11@uk!z#tn4x00@bx&d)%pumboavu^+k05!5213a_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app"]
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django_vercel.middleware.VercelStaticFilesMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -130,3 +131,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 UNSPLASH_CLIENT_ID = os.environ.get("UNSPLASH_CLIENT_ID")
+# The STATICFILES_STORAGE setting specifies the storage backend to use for serving static files.
+STATICFILES_STORAGE = 'django_vercel.storage.VercelStaticFilesStorage'
+
+# The DEFAULT_FILE_STORAGE setting specifies the storage backend to use for storing uploaded media files.
+DEFAULT_FILE_STORAGE = 'django_vercel.storage.VercelMediaStorage'
+DEFAULT_FILE_STORAGE = 'django_vercel.storage.VercelMediaStorage'
